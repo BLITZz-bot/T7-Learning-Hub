@@ -22,72 +22,101 @@ The **T7 Learning Hub** is an all-in-one, hackathon-ready study command center t
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Comprehensive Tech Stack
 
-### Frontend
-*   **Next.js 14** (App Router)
-*   **React** (State management & Hooks)
-*   **Vanilla CSS + Tailwind CSS** (Premium glassmorphic design)
-*   **Lucide React** (Modern iconography)
-*   **Sonner** (Graceful toast notifications)
+### 🔹 Core AI & Backend
+*   **Engine**: [FastAPI](https://fastapi.tiangolo.com/) (Asynchronous High-Performance Framework)
+*   **AI Orchestration**: [LlamaIndex](https://www.llamaindex.ai/) (RAG & Data Framework for LLMs)
+*   **LLM Providers**: Multi-provider support including **OpenAI (GPT-4o)**, **Anthropic (Claude 3.5)**, **Google (Gemini 1.5 Pro)**, and **Groq**.
+*   **Data Processing**: PyMuPDF & PyPDF for document extraction; `youtube_transcript_api` for video processing.
+*   **Task Management**: `tenacity` for robust API retries and `pydantic` for strict data validation.
 
-### Backend
-*   **FastAPI** (High-performance Python backend)
-*   **Firebase Admin SDK** (Cloud integration)
-*   **Uvicorn** (Asynchronous server)
+### 🔹 Frontend Ecosystem
+*   **Main Application (T7 Academy)**: 
+    *   [Next.js 16+](https://nextjs.org/) (App Router Architecture)
+    *   [React 19](https://react.dev/) (Concurrent Rendering)
+    *   **Styling**: Tailwind CSS with Framer Motion for premium glassmorphic animations.
+    *   **Components**: Lucide Icons, Sonner (Toasts), Mermaid.js (Roadmaps), and Chart.js (Analytics).
+*   **Student Dashboard (T7skillup)**: 
+    *   [Vite](https://vitejs.dev/) + React 18 for ultra-fast development.
+    *   Firebase Web SDK for real-time data sync.
 
-### Database & Storage
-*   **Firebase Firestore**: Persistent metadata for shared shelves and user progress.
-*   **Firebase Storage**: Secure, partitioned storage for PDFs and study notes.
-
----
-
-## 📥 Getting Started
-
-### 1. Prerequisites
-*   **Node.js** (v18+)
-*   **Python 3.10+**
-*   **Firebase Project**: You need a `serviceAccountKey.json` from Firebase.
-
-### 2. Backend Setup
-```bash
-cd "T7 Academy"
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-# Place your serviceAccountKey.json in the deeptutor/api/ directory
-python -m deeptutor.api.run_server
-```
-
-### 3. Frontend Setup
-```bash
-# Terminal 1: Main Web App
-cd "T7 Academy/web"
-npm install
-npm run dev
-
-# Terminal 2: Student Dashboard
-cd "T7skillup"
-npm install
-npm run dev
-```
-
-### 4. Extension Setup
-1. Open Chrome and go to `chrome://extensions/`.
-2. Enable **Developer Mode**.
-3. Click **Load unpacked** and select the `T7-extension` folder.
+### 🔹 Database & Cloud Infrastructure
+*   **Persistence**: [Firebase Firestore](https://firebase.google.com/docs/firestore) (NoSQL Scalable Database).
+*   **Object Storage**: [Firebase Storage](https://firebase.google.com/docs/storage) (Secure storage for user uploads).
+*   **CI/CD & DevOps**: 
+    *   **Docker**: Multi-platform builds (linux/amd64, linux/arm64) using Docker Buildx.
+    *   **GitHub Actions**: Automated testing and GHCR (GitHub Container Registry) releases.
 
 ---
 
-## 🏗️ Architecture
-The project is split into three main parts:
-- **T7 Academy (Web)**: The primary student portal where libraries are managed and sharing happens.
-- **T7skillup**: The interactive learning dashboard for quizzes and AI mode transformations.
-- **T7-extension**: The bridge between the web and your personal study hub.
+## 🚀 Professional Execution Guide
+
+Follow these steps to set up a production-grade development environment.
+
+### 1️⃣ Environment Preparation
+Ensure you have **Node.js v18+**, **Python 3.11+**, and **Git** installed.
+
+### 2️⃣ Backend Configuration (FastAPI)
+1.  Navigate to the academy directory:
+    ```bash
+    cd "T7 Academy"
+    ```
+2.  Create and activate a clean virtual environment:
+    ```bash
+    python -m venv .venv
+    # Windows:
+    .\.venv\Scripts\activate
+    # macOS/Linux:
+    source .venv/bin/activate
+    ```
+3.  Install dependencies:
+    ```bash
+    pip install -e ".[server]"
+    ```
+4.  Setup Environment Variables:
+    Create a `.env` file and add your `OPENAI_API_KEY`, `GOOGLE_API_KEY`, and Firebase credentials.
+5.  Launch the server:
+    ```bash
+    python -m deeptutor.api.run_server
+    ```
+
+### 3️⃣ Main Web App Setup (Next.js)
+1.  Navigate to the web folder:
+    ```bash
+    cd "T7 Academy/web"
+    ```
+2.  Install packages:
+    ```bash
+    npm install --legacy-peer-deps
+    ```
+3.  Run in development mode:
+    ```bash
+    npm run dev
+    ```
+
+### 4️⃣ Student Dashboard Setup (Vite)
+1.  Navigate to the skillup directory:
+    ```bash
+    cd "T7skillup"
+    ```
+2.  Install and launch:
+    ```bash
+    npm install
+    npm run dev
+    ```
+
+---
+
+## 🏗️ Architecture Overview
+The project follows a **Micro-Frontend & Agentic API** pattern:
+*   **/T7 Academy**: The core engine providing the RAG pipeline and administrative UI.
+*   **/T7skillup**: A dedicated, lightweight student interface for high-performance learning.
+*   **/T7-extension**: Bridging the gap between the web and the study hub for seamless content clipping.
 
 ---
 
 ## 🏆 Hackathon Credits
 Developed with ❤️ for the **T7 SkillUp Hackathon**. 
 
-**Maintained by**: [BLITZz-bot](https://github.com/BLITZz-bot)
+**Lead Developer**: [BLITZz-bot](https://github.com/BLITZz-bot)
