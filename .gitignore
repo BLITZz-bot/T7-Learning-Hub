@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+.next/
+dist/
+build/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+serviceAccountKey.json
+
+# Data
+data/
+library_data/
+*.db
+*.log
+
+# IDE
+.vscode/
+.idea/

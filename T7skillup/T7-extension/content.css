@@ -1,0 +1,195 @@
+/* T7 — Injected Badge Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+.vm-badge {
+  font-family: 'DM Sans', -apple-system, sans-serif !important;
+  width: 190px !important;
+  min-width: 190px !important;
+  flex-shrink: 0 !important;
+  margin-left: 12px !important;
+  align-self: flex-start !important;
+}
+
+.vm-badge-inner {
+  background: #0f0f14 !important;
+  border: 1px solid rgba(124,111,255,0.25) !important;
+  border-radius: 12px !important;
+  padding: 12px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.vm-badge-inner::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, #7c6fff, #2dd4bf) !important;
+}
+
+.vm-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 8px !important;
+}
+
+.vm-logo {
+  font-family: 'Syne', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #a594ff !important;
+  letter-spacing: 0.3px !important;
+}
+
+.vm-loading-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: #7c6fff !important;
+  animation: vm-pulse 1.2s ease-in-out infinite !important;
+}
+
+@keyframes vm-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.vm-stars {
+  display: flex !important;
+  gap: 1px !important;
+  margin-bottom: 3px !important;
+}
+
+.vm-star {
+  font-size: 13px !important;
+  line-height: 1 !important;
+}
+
+.vm-star.full { color: #f59e0b !important; }
+.vm-star.half { color: #f59e0b !important; opacity: 0.6 !important; }
+.vm-star.empty { color: #333 !important; }
+
+.vm-score-row {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 2px !important;
+  margin-bottom: 8px !important;
+}
+
+.vm-score {
+  font-family: 'Syne', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: #f0f0f5 !important;
+  line-height: 1 !important;
+}
+
+.vm-score-label {
+  font-size: 11px !important;
+  color: #5a5a6a !important;
+}
+
+.vm-rel-section {
+  margin-bottom: 8px !important;
+}
+
+.vm-rel-label {
+  font-size: 9px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  color: #5a5a6a !important;
+  font-weight: 600 !important;
+  margin-bottom: 4px !important;
+}
+
+.vm-rel-track {
+  width: 100% !important;
+  height: 5px !important;
+  background: #1e1e28 !important;
+  border-radius: 3px !important;
+  overflow: hidden !important;
+}
+
+.vm-rel-fill {
+  height: 100% !important;
+  border-radius: 3px !important;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background: #22c55e !important;
+}
+
+.vm-rel-pct {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #22c55e !important;
+  margin-top: 3px !important;
+  text-align: right !important;
+}
+
+.vm-summary-box {
+  background: #18181f !important;
+  border-radius: 7px !important;
+  padding: 7px 9px !important;
+  margin-bottom: 8px !important;
+  border-left: 2px solid #7c6fff !important;
+}
+
+.vm-summary-text {
+  font-size: 11px !important;
+  color: #9090a0 !important;
+  line-height: 1.5 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+.vm-shimmer {
+  background: linear-gradient(90deg, #1e1e28 25%, #2a2a38 50%, #1e1e28 75%) !important;
+  background-size: 200% 100% !important;
+  animation: vm-shimmer 1.5s infinite !important;
+  border-radius: 3px !important;
+  color: transparent !important;
+  user-select: none !important;
+}
+
+@keyframes vm-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.vm-actions {
+  display: flex !important;
+  gap: 5px !important;
+}
+
+.vm-btn {
+  flex: 1 !important;
+  padding: 5px 0 !important;
+  border-radius: 6px !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  border: none !important;
+  transition: all 0.15s !important;
+  text-align: center !important;
+}
+
+.vm-btn-primary {
+  background: rgba(124,111,255,0.2) !important;
+  color: #a594ff !important;
+  border: 1px solid rgba(124,111,255,0.3) !important;
+}
+
+.vm-btn-primary:hover {
+  background: rgba(124,111,255,0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Dark mode compatibility */
+html[dark] .vm-badge-inner,
+[dark] .vm-badge-inner {
+  background: #0a0a0f !important;
+}

@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T7</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080810;
+      --bg2: #0f0f16;
+      --bg3: #16161f;
+      --bg4: #1c1c27;
+      --bg5: #22222f;
+      --b1: rgba(255, 255, 255, 0.06);
+      --b2: rgba(255, 255, 255, 0.10);
+      --b3: rgba(255, 255, 255, 0.16);
+      --text: #eeeef5;
+      --text2: #8888a0;
+      --text3: #4a4a60;
+      --accent: #7c6fff;
+      --accent2: #a594ff;
+      --glow: rgba(124, 111, 255, 0.18);
+      --teal: #2dd4bf;
+      --amber: #f59e0b;
+      --green: #22c55e;
+      --red: #ef4444;
+      --r: 10px;
+      --r-sm: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 14px;
+    }
+
+    body {
+      width: 400px;
+      min-height: 560px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      padding: 14px 16px 12px;
+      border-bottom: 1px solid var(--b1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--teal), transparent);
+      opacity: 0.5;
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, var(--accent) 0%, #5b8dff 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark svg {
+      width: 16px;
+      height: 16px;
+      fill: white;
+    }
+
+    .logo-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text em {
+      color: var(--accent2);
+      font-style: normal;
+    }
+
+    .header-badge {
+      margin-left: auto;
+      font-size: 9px;
+      font-weight: 600;
+      padding: 3px 7px;
+      border-radius: 10px;
+      background: var(--glow);
+      color: var(--accent2);
+      border: 1px solid rgba(124, 111, 255, 0.3);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* ── NAV TABS ── */
+    .nav {
+      display: flex;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--b1);
+      padding: 0 8px;
+    }
+
+    .nav-btn {
+      flex: 1;
+      padding: 9px 4px;
+      background: none;
+      border: none;
+      color: var(--text3);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .nav-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .nav-btn:hover {
+      color: var(--text2);
+    }
+
+    .nav-btn.active {
+      color: var(--accent2);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── PAGES ── */
+    .page {
+      display: none;
+      flex-direction: column;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    /* ── SETTINGS PAGE ── */
+    .settings-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .field-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text3);
+      margin-bottom: 6px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.35;
+    }
+
+    .input-icon svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 9px 10px 9px 34px;
+      background: var(--bg3);
+      border: 1px solid var(--b2);
+      border-radius: var(--r-sm);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    input:focus {
+      border-color: var(--accent);
+    }
+
+    input::placeholder {
+      color: var(--text3);
+    }
+
+    .key-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 5px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text3);
+    }
+
+    .status-dot.ok {
+      background: var(--green);
+    }
+
+    .status-dot.err {
+      background: var(--red);
+    }
+
+    .goal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .goal-card {
+      padding: 10px 12px;
+      background: var(--bg3);
+      border: 1.5px solid var(--b1);
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .goal-card:hover {
+      border-color: var(--b3);
+      background: var(--bg4);
+    }
+
+    .goal-card.active {
+      border-color: var(--accent);
+      background: var(--glow);
+    }
+
+    .goal-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .goal-card-text {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text2);
+    }
+
+    .goal-card.active .goal-card-text {
+      color: var(--accent2);
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--bg3);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--b1);
+    }
+
+    .toggle-info {}
+
+    .toggle-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .toggle-sub {
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 1px;
+    }
+
+    .toggle {
+      position: relative;
+      width: 36px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg5);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      left: 3px;
+      bottom: 3px;
+      background: var(--text3);
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+
+    .toggle input:checked+.toggle-slider {
+      background: var(--accent);
+    }
+
+    .toggle input:checked+.toggle-slider::before {
+      transform: translateX(16px);
+      background: white;
+    }
+
+    .save-btn {
+      width: 100%;
+      padding: 10px;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--r-sm);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.2px;
+    }
+
+    .save-btn:hover {
+      background: var(--accent2);
+      transform: translateY(-1px);
+    }
+
+    .save-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ── ANALYZE PAGE ── */
+    .analyze-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .video-info-card {
+      background: var(--bg2);
+      border: 1px solid var(--b1);
+      border-radius: var(--r);
+      padding: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .video-thumb {
+      width: 100px;
+      height: 56px;
+      border-radius: 6px;
+      background: var(--bg4);
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-thumb-icon {
+      opacity: 0.2;
+    }
+
+    .video-thumb-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .video-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .video-title-small {
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 3px;
+    }
+
+    .video-channel-small {
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .no-video-msg {
+      text-align: center;
+      padding: 24px 16px;
+      color: var(--text3);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .no-video-msg svg {
+      width: 32px;
+      height: 32px;
+      opacity: 0.2;
+      margin-bottom: 8px;
+    }
+
+    /* ── RATING DISPLAY ── */
+    .rating-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .stat-card {
+      background: var(--bg3);
+      border: 1px solid var(--b1);
+      border-radius: var(--r-sm);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .stat-lbl {
+      font-size: 10px;
+      color: var(--text3);
+      margin-top: 2px;
+    }
+
+    .stars-row {
+      display: flex;
+      justify-content: center;
+      gap: 1px;
+      margin-bottom: 2px;
+    }
+
+    .star-icon {
+      font-size: 12px;
+    }
+
+    .star-icon.f {
+      color: var(--amber);
+    }
+
+    .star-icon.h {
+      color: var(--amber);
+      opacity: 0.6;
+    }
+
+    .star-icon.e {
+      color: var(--b2);
+    }
+
+    .rel-bar-wrap {
+      margin-top: 4px;
+    }
+
+    .rel-track {
+      width: 100%;
+      height: 6px;
+      background: var(--bg5);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .rel-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── TABS ── */
+    .tab-strip {
+      display: flex;
+      gap: 2px;
+      background: var(--bg3);
+      border-radius: var(--r-sm);
+      padding: 3px;
+      margin: 0 16px;
+    }
+
+    .tab-pill {
+      flex: 1;
+      padding: 6px 4px;
+      background: transparent;
+      border: none;
+      border-radius: 5px;
+      color: var(--text3);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+
+    .tab-pill.active {
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .tab-pane {
+      display: none;
+      padding: 14px 16px;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .tab-pane.active {
+      display: flex;
+    }
+
+    /* ── SUMMARY ── */
+    .ai-summary {
+      background: var(--bg3);
+      border: 1px solid var(--b1);
+      border-left: 2px solid var(--accent);
+      border-radius: var(--r-sm);
+      padding: 11px 13px;
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.7;
+      max-height: 130px;
+      overflow-y: auto;
+    }
+
+    .ai-summary::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .ai-summary::-webkit-scrollbar-thumb {
+      background: var(--bg5);
+      border-radius: 3px;
+    }
+
+    .section-lbl {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: var(--text3);
+      margin-bottom: 6px;
+    }
+
+    /* ── HIGHLIGHTS ── */
+    .hl-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .hl-list::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .hl-list::-webkit-scrollbar-thumb {
+      background: var(--bg5);
+      border-radius: 3px;
+    }
+
+    .hl-item {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      background: var(--bg3);
+      border-radius: 7px;
+      padding: 8px 10px;
+    }
+
+    .hl-time {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent2);
+      background: var(--glow);
+      padding: 2px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .hl-time:hover {
+      background: rgba(124, 111, 255, 0.3);
+    }
+
+    .hl-text {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    /* ── TRANSCRIPT ── */
+    .transcript-wrap {
+      background: var(--bg3);
+      border-radius: var(--r-sm);
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .transcript-wrap::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .transcript-wrap::-webkit-scrollbar-thumb {
+      background: var(--bg5);
+      border-radius: 3px;
+    }
+
+    .ts-item {
+      display: flex;
+      gap: 8px;
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--b1);
+    }
+
+    .ts-time {
+      font-size: 10px;
+      color: var(--accent2);
+      font-weight: 600;
+      flex-shrink: 0;
+      min-width: 36px;
+      cursor: pointer;
+      padding-top: 1px;
+    }
+
+    .ts-time:hover {
+      text-decoration: underline;
+    }
+
+    .ts-text {
+      font-size: 11px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .export-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .export-btn {
+      flex: 1;
+      padding: 7px;
+      background: var(--bg3);
+      border: 1px solid var(--b2);
+      border-radius: var(--r-sm);
+      color: var(--text2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+
+    .export-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent2);
+    }
+
+    /* ── CHAT ── */
+    .chat-window {
+      background: var(--bg3);
+      border-radius: var(--r-sm);
+      display: flex;
+      flex-direction: column;
+      height: 200px;
+    }
+
+    .chat-msgs {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .chat-msgs::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .chat-msgs::-webkit-scrollbar-thumb {
+      background: var(--bg5);
+      border-radius: 3px;
+    }
+
+    .msg {
+      font-size: 12px;
+      line-height: 1.5;
+      padding: 7px 10px;
+      border-radius: 8px;
+      max-width: 90%;
+    }
+
+    .msg.user {
+      background: var(--glow);
+      color: var(--text);
+      border: 1px solid rgba(124, 111, 255, 0.2);
+      align-self: flex-end;
+      border-radius: 8px 8px 2px 8px;
+    }
+
+    .msg.ai {
+      background: var(--bg4);
+      color: var(--text2);
+      align-self: flex-start;
+      border-radius: 8px 8px 8px 2px;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .chat-field {
+      flex: 1;
+      padding: 8px 10px;
+      background: var(--bg3);
+      border: 1px solid var(--b2);
+      border-radius: var(--r-sm);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .chat-field:focus {
+      border-color: var(--accent);
+    }
+
+    .chat-field::placeholder {
+      color: var(--text3);
+    }
+
+    .chat-send {
+      padding: 8px 14px;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--r-sm);
+      color: white;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: background 0.15s;
+    }
+
+    .chat-send:hover {
+      background: var(--accent2);
+    }
+
+    /* ── LOADING / SKELETON ── */
+    .skeleton {
+      background: linear-gradient(90deg, var(--bg3) 25%, var(--bg4) 50%, var(--bg3) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+      color: transparent;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0
+      }
+
+      100% {
+        background-position: -200% 0
+      }
+    }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--b2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── ACTION BUTTONS ── */
+    .primary-btn {
+      width: 100%;
+      padding: 9px;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--r-sm);
+      color: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .primary-btn:hover {
+      background: var(--accent2);
+    }
+
+    .primary-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .outline-btn {
+      flex: 1;
+      padding: 8px;
+      background: transparent;
+      border: 1px solid var(--b2);
+      border-radius: var(--r-sm);
+      color: var(--text2);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .outline-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent2);
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%) translateY(60px);
+      background: var(--bg3);
+      border: 1px solid var(--b2);
+      border-radius: var(--r-sm);
+      padding: 8px 14px;
+      font-size: 12px;
+      color: var(--text2);
+      white-space: nowrap;
+      transition: transform 0.25s;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 8px 16px;
+      border-top: 1px solid var(--b1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg2);
+    }
+
+    .footer-text {
+      font-size: 10px;
+      color: var(--text3);
+    }
+
+    .footer-goal {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--accent2);
+      background: var(--glow);
+      padding: 2px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(124, 111, 255, 0.2);
+    }
+
+    /* ── SUBTITLES ── */
+    .sub-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .select-field {
+      width: 100%;
+      padding: 8px 10px;
+      background: var(--bg3);
+      border: 1px solid var(--b2);
+      border-radius: var(--r-sm);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .select-field:focus {
+      border-color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+      </svg>
+    </div>
+    <span class="logo-text">T7<em>Mind</em></span>
+    <span class="header-badge">AI</span>
+  </div>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <button class="nav-btn active" data-page="analyze">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+      </svg>
+      Analyze
+    </button>
+    <button class="nav-btn" data-page="search">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+      </svg>
+      Search
+    </button>
+    <button class="nav-btn" data-page="settings">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" />
+      </svg>
+      Settings
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+     PAGE: ANALYZE (current YouTube video)
+═══════════════════════════════════════ -->
+  <div class="page active" id="page-analyze">
+    <div class="analyze-body">
+
+      <!-- Video Info -->
+      <div class="video-info-card" id="video-card">
+        <div class="video-thumb" id="video-thumb">
+          <div class="video-thumb-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2z" />
+            </svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <div class="video-title-small" id="video-title">Loading…</div>
+          <div class="video-channel-small" id="video-channel">–</div>
+        </div>
+      </div>
+
+      <!-- Ratings Row -->
+      <div class="rating-row" id="rating-row">
+        <div class="stat-card">
+          <div class="stars-row" id="stars-display"></div>
+          <div class="stat-val" id="rating-val">–</div>
+          <div class="stat-lbl">Quality</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="rel-val" style="font-size:16px">–%</div>
+          <div class="rel-bar-wrap">
+            <div class="rel-track">
+              <div class="rel-fill" id="rel-bar" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="stat-lbl">Goal Match</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="views-val">–</div>
+          <div class="stat-lbl">Views</div>
+        </div>
+      </div>
+
+      <!-- Analyze Button -->
+      <div style="display:flex;gap:6px">
+        <button class="primary-btn" id="analyze-btn" style="flex:2">
+          <span class="spinner" id="analyze-spinner" style="display:none"></span>
+          <span id="analyze-btn-text">⚡ Analyze Video</span>
+        </button>
+        <button class="outline-btn" id="sync-btn" style="flex:1;display:none">
+          <span>🔄 Sync</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Tab Strip -->
+    <div class="tab-strip">
+      <button class="tab-pill active">Summary</button>
+      <button class="tab-pill">Highlights</button>
+      <button class="tab-pill">Transcript</button>
+      <button class="tab-pill">Subtitles</button>
+      <button class="tab-pill">Chat</button>
+    </div>
+
+    <!-- Summary Tab -->
+    <div class="tab-pane active" id="tab-summary">
+      <div class="section-lbl">AI Summary</div>
+      <div class="ai-summary" id="summary-text">Click "Analyze This Video" to generate an AI summary of the current
+        YouTube video.</div>
+      <div style="display:flex;gap:6px">
+        <button class="outline-btn">Copy Summary</button>
+        <button class="outline-btn">Ask Follow-up</button>
+      </div>
+    </div>
+
+    <!-- Highlights Tab -->
+    <div class="tab-pane" id="tab-highlights">
+      <div class="section-lbl">Key Moments</div>
+      <div class="hl-list" id="hl-list">
+        <div style="color:var(--text3);font-size:12px;text-align:center;padding:20px">
+          Analyze the video to extract key moments
+        </div>
+      </div>
+    </div>
+
+    <!-- Transcript Tab -->
+    <div class="tab-pane" id="tab-transcript">
+      <div class="section-lbl">Transcript</div>
+      <div class="transcript-wrap" id="transcript-wrap">
+        <div style="color:var(--text3);font-size:12px;text-align:center;padding:20px">
+          Transcript will appear here after analysis
+        </div>
+      </div>
+      <div class="export-row">
+        <button class="export-btn">Export TXT</button>
+        <button class="export-btn">Export SRT</button>
+        <button class="export-btn">Copy Text</button>
+      </div>
+    </div>
+
+    <!-- Subtitles Tab -->
+    <div class="tab-pane" id="tab-subtitles">
+      <div class="section-lbl">Subtitle Generator</div>
+      <div class="sub-controls">
+        <select class="select-field" id="subtitle-lang">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="hi">Hindi</option>
+          <option value="pt">Portuguese</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+          <option value="zh">Chinese</option>
+          <option value="ar">Arabic</option>
+        </select>
+        <button class="primary-btn">Generate Subtitles</button>
+        <div class="export-row">
+          <button class="export-btn">Download SRT</button>
+          <button class="export-btn">Download TXT</button>
+        </div>
+        <div id="subtitle-preview" style="display:none">
+          <div class="section-lbl" style="margin-top:4px">Preview</div>
+          <div class="transcript-wrap" id="subtitle-preview-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Tab -->
+    <div class="tab-pane" id="tab-chat">
+      <div class="section-lbl">Ask About This Video</div>
+      <div class="chat-window">
+        <div class="chat-msgs" id="chat-msgs">
+          <div class="msg ai">👋 Ask me anything about this video. Analyze it first for best results!</div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-field" id="chat-input" placeholder="What does this video cover?">
+        <button class="chat-send">Ask</button>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:2px">
+        <button class="outline-btn">Main points</button>
+        <button class="outline-btn">Prerequisites</button>
+        <button class="outline-btn">Study plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     PAGE: SEARCH (search YouTube + rate)
+═══════════════════════════════════════ -->
+  <div class="page" id="page-search">
+    <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+      <div class="field-label">Search YouTube</div>
+      <div class="input-wrap">
+        <span class="input-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+          </svg>
+        </span>
+        <input type="text" id="yt-search-input" placeholder="HTML course, React tutorial…" style="padding-left:34px">
+      </div>
+      <button class="primary-btn" id="yt-search-btn">
+        <span id="search-spinner" class="spinner" style="display:none"></span>
+        Search & Rate Videos
+      </button>
+      <div id="search-goal-hint" style="font-size:11px;color:var(--text3);text-align:center">
+        Set a learning goal in Settings to get personalized relevance scores
+      </div>
+    </div>
+    <div id="search-results"
+      style="padding:0 16px 14px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;max-height:340px"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+     PAGE: SETTINGS
+═══════════════════════════════════════ -->
+  <div class="page" id="page-settings">
+    <div class="settings-body">
+
+      <div>
+        <div class="field-label">T7 Account ID</div>
+        <div class="input-wrap">
+          <span class="input-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
+            </svg>
+          </span>
+          <input type="text" id="account-id-input" placeholder="Paste your T7-XXXXXX ID here...">
+        </div>
+        <div style="font-size:10px;color:var(--text3);margin-top:4px">
+          Find your <span style="color:var(--accent2);font-weight:600">T7 Account ID</span> on the T7skillup <span
+            style="color:var(--accent2)">Dashboard</span> → Copy ID
+        </div>
+      </div>
+
+      <div>
+        <div class="field-label">Gemini API Key</div>
+        <div class="input-wrap">
+          <span class="input-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+            </svg>
+          </span>
+          <input type="password" id="api-key-input" placeholder="AIzaSy...">
+        </div>
+        <div class="key-status">
+          <span class="status-dot" id="key-dot"></span>
+          <span id="key-status-text">Enter your Gemini API key to unlock AI features</span>
+        </div>
+        <div style="font-size:10px;color:var(--text3);margin-top:4px">
+          Get a free key at <span style="color:var(--accent2)">aistudio.google.com</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="field-label">Learning Goal (personalizes ratings)</div>
+        <div class="goal-grid" id="goal-grid">
+          <div class="goal-card" data-goal="frontend">
+            <span class="goal-dot" style="background:#a594ff"></span>
+            <span class="goal-card-text">Frontend Dev</span>
+          </div>
+          <div class="goal-card" data-goal="backend">
+            <span class="goal-dot" style="background:#2dd4bf"></span>
+            <span class="goal-card-text">Backend Dev</span>
+          </div>
+          <div class="goal-card" data-goal="data">
+            <span class="goal-dot" style="background:#f59e0b"></span>
+            <span class="goal-card-text">Data Science</span>
+          </div>
+          <div class="goal-card" data-goal="design">
+            <span class="goal-dot" style="background:#f472b6"></span>
+            <span class="goal-card-text">UI/UX Design</span>
+          </div>
+          <div class="goal-card" data-goal="devops">
+            <span class="goal-dot" style="background:#ef4444"></span>
+            <span class="goal-card-text">DevOps/Cloud</span>
+          </div>
+          <div class="goal-card" data-goal="general">
+            <span class="goal-dot" style="background:#666"></span>
+            <span class="goal-card-text">General</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="field-label">Features</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title">Auto-rate YouTube results</div>
+              <div class="toggle-sub">Show AI badges on search pages</div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="auto-rate-toggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <div class="toggle-title">Multilingual summaries</div>
+              <div class="toggle-sub">Summarize in your preferred language</div>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="multilang-toggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="field-label">Summary Language</div>
+        <select class="select-field" id="summary-lang">
+          <option value="English">English</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="Hindi">Hindi</option>
+          <option value="Portuguese">Portuguese</option>
+          <option value="German">German</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Arabic">Arabic</option>
+          <option value="Korean">Korean</option>
+        </select>
+      </div>
+
+      <button class="save-btn">Save Settings</button>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <span class="footer-text">T7 v1.0 · Gemini AI</span>
+    <span class="footer-goal" id="footer-goal" style="display:none"></span>
+  </div>
+
+  <!-- ── TOAST ── -->
+  <div class="toast" id="toast">
+    <span class="toast-dot" id="toast-dot"></span>
+    <span id="toast-msg"></span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
